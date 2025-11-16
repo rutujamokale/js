@@ -15,10 +15,28 @@
 
         var btn=document.getElementById("myBtn");
         btn.addEventListener("click",displayDate);
+        document.addEventListener("mousedown",onMouseDown);
+           document.addEventListener("mouseup",onMouseUp);
+              document.addEventListener("mousemove",onMouseMove);
+
 
         function displayDate(){
             document.getElementById("demo").innerHTML=Date();
         }
+
+        function onMouseDown(){
+            document.getElementById("demo").innerHTML="Mouse Down";
+        }
+
+        function onMouseUp(){
+              document.getElementById("demo").innerHTML="Mouse up";      
+        }
+
+        function onMouseMove(){
+              document.getElementById("demo").innerHTML="Mouse move";      
+        }
+
+
 
 
     </script>
