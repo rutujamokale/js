@@ -24,16 +24,29 @@
             document.getElementById("demo").innerHTML=Date();
         }
 
-        function onMouseDown(){
-            document.getElementById("demo").innerHTML="Mouse Down";
+        function onMouseDown(event){
+
+            var x=event.clientX;
+            var y=event.clientY;
+            var coords= x + "," +y;
+            document.getElementById("demo").innerHTML="Mouse Down"   +coords;
+
+
         }
 
-        function onMouseUp(){
-              document.getElementById("demo").innerHTML="Mouse up";      
+        function onMouseUp(event){
+
+              var x= event.clientX;
+              var y= event.clientY;
+              var coords= x + "," +y;
+              document.getElementById("demo").innerHTML="Mouse up" +coords;      
         }
 
-        function onMouseMove(){
-              document.getElementById("demo").innerHTML="Mouse move";      
+        function onMouseMove(event){
+               var x= event.clientX;
+              var y= event.clientY;
+              var coords= x + "," +y;  
+              document.getElementById("demo").innerHTML="Mouse move" +coords;      
         }
 
 
