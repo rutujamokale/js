@@ -27,10 +27,45 @@
        function drawRectangle(){
         var theCanvas=document.getElementById("canvas");
         var context=theCanvas.getContext("2d");
-        context.fillRect(50,50,200,150);
+       /*  context.fillRect(50,50,200,150); */
+        context.strokeRect(50,50,200,150);
        }
 
-       drawRectangle();
+     //  drawRectangle();
+
+function drawTriangel(){
+    var canvas=document.getElementById("canvas");
+    if(canvas.getContext){
+        var ctx=canvas.getContext("2d");
+
+        ctx.beginPath();
+        ctx.moveTo(50,50);
+        ctx.lineTo(100,75);
+        ctx.lineTo(100,25);
+        ctx.fill();
+
+    }
+}
+
+    //   drawTriangel(); 
+
+    function drawCircle(){
+        var canvas=document.getElementById("canvas");
+        if(canvas.getContext){
+            var ctx=canvas.getContext("2d");
+
+            ctx.beginPath();
+            ctx.arc(50,50,40,0,2*Math.PI);
+            ctx.stroke();
+            ctx.fillStyle="blue";
+            ctx.fill();
+        }
+    }
+
+    drawCircle();
+
+
+
 
     </script>
 </body>
