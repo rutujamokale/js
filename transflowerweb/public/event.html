@@ -18,6 +18,7 @@
         document.addEventListener("mousedown",onMouseDown);
            document.addEventListener("mouseup",onMouseUp);
               document.addEventListener("mousemove",onMouseMove);
+              document.addEventListener("keydown" ,onKeyDown);
 
 
         function displayDate(){
@@ -25,7 +26,7 @@
         }
 
         function onMouseDown(event){
-
+            console.log("Mouse Down");
             var x=event.clientX;
             var y=event.clientY;
             var coords= x + "," +y;
@@ -35,7 +36,7 @@
         }
 
         function onMouseUp(event){
-
+               console.log("Mouse Up");  
               var x= event.clientX;
               var y= event.clientY;
               var coords= x + "," +y;
@@ -43,10 +44,20 @@
         }
 
         function onMouseMove(event){
+                console.log("Mouse Move"); 
                var x= event.clientX;
               var y= event.clientY;
               var coords= x + "," +y;  
               document.getElementById("demo").innerHTML="Mouse move" +coords;      
+        }
+
+        function onKeyDown(event){
+            console.log("Key Down");
+            var x= event.clientX;
+             var y= event.clientY;
+              var coords= x + "," +y;  
+              document.getElementById("demo").innerHTML="Key Down" +coords;      
+
         }
 
 
