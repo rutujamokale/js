@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transflower</title>
+</head>
+<body>
+    <input type="text" id="txtName"/>
+    <button onclick="onSetData()"> Set Data</button>
+    <hr/>
+    <div id="result"></div>
+
+    <script> 
+        function onSetData() {
+            if (typeof(Storage) !== "undefined") {
+                var txtInput = document.getElementById("txtName");
+                var name = txtInput.value;
+                localStorage.setItem("person", name);
+
+                document.getElementById("result").innerHTML = 
+                    "Data saved: " + name;
+            } else {
+                document.getElementById("result").innerHTML =
+                    "Sorry, your browser does not support HTML5 Web Storage.";
+            }
+        }
+    </script>
+</body>
+</html>

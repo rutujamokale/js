@@ -55,15 +55,46 @@ function drawTriangel(){
             var ctx=canvas.getContext("2d");
 
             ctx.beginPath();
-            ctx.arc(50,50,40,0,2*Math.PI);
+            ctx.arc(50,50,40,45,2*Math.PI);
             ctx.stroke();
             ctx.fillStyle="blue";
             ctx.fill();
         }
     }
 
-    drawCircle();
+   // drawCircle();
+    function drawSmiley() {
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
 
+    // Face circle
+    ctx.beginPath();
+    ctx.arc(250, 250, 120, 0, 2 * Math.PI);
+    ctx.fillStyle = "yellow";
+    ctx.fill();
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    // Left eye
+    ctx.beginPath();
+    ctx.arc(210, 220, 15, 0, 2 * Math.PI);
+    ctx.fillStyle = "black";
+    ctx.fill();
+
+    // Right eye
+    ctx.beginPath();
+    ctx.arc(290, 220, 15, 0, 2 * Math.PI);
+    ctx.fillStyle = "black";
+    ctx.fill();
+
+    // Smile mouth
+    ctx.beginPath();
+    ctx.arc(250, 260, 70, 0, Math.PI);  // half circle
+    ctx.lineWidth = 5;
+    ctx.stroke();
+}
+    drawSmiley();
 
 
 
