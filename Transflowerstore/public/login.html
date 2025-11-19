@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,43 +6,16 @@
     <title>Login</title>
 </head>
 <body>
+    <h1>login</h1>
+    <hr/>
 
-    <h2>Login Form</h2>
+    <form action="/api/login" method="POST">
+    <label>user name:</label><input type="text" id="username" name="username" required>
+    <br/>
 
-    <form id="loginForm">
-        <label>Username:</label><br>
-        <input type="text" id="username" required><br><br>
-
-        <label>Password:</label><br>
-        <input type="password" id="password" required><br><br>
-
-        <button type="submit">Login</button>
+     <label>password:</label><input type="text" id="password" name="password" required>
+    <br/>
+    <button type="submit">Login</button>
     </form>
-
-    <p id="result"></p>
-
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", async function (event) {
-            event.preventDefault();
-
-            let user = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
-
-            let response = await fetch("/api/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(user)
-            });
-
-            let result = await response.json();
-            
-            document.getElementById("result").innerText = result.message;
-        });
-    </script>
-
 </body>
-</html> -->
+</html>
