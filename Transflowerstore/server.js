@@ -90,12 +90,20 @@ app.post("/api/login", (req, res) => {
     } else {
         res.json({ message: "Invalid User" });
     }
+})
+
+app.post("/api/register",(req,res)=>{
+  var newCustomer=req.body;
+  customers.push(newCustomer);
+  res.send("customer register sucessfully");
 });
+app.delete("/api/flowers/:id",(req,res)=>{
+  let id=req.params.id;
+  let remainingFlowers=flowers.filter(f=>f.id!=id);
+  flowers=remainingFlowers;
+  res.send("flowers is removed");
 
-
-   
-
-
+}) ;
 
 app.listen(3000, function () {
     console.log("Server running at http://localhost:3000");
