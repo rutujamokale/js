@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product catlog</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+       <h1>todays fresh flower  available for sale</h1>
+       <hr/>
+
+       <ol id="flowerlist">
+              <li>rose</li> 
+              <li>gerbera</li> 
+              <li>lily</li>
+       </ol>
+      <script>
+       
+
+        $(document).ready (function(){
+            console.log("document is ready");
+        });
+
+    /*  async function getFlowersFromTransflowerstore(){
+              var flowersUrl="http://localhost:3000/api/flowers";
+
+              try{
+                    let response=  await fetch(flowersUrl);
+                     let data = await response.json();   
+                   console.log(data);
+                   
+              }
+              catch(err){
+                    console.log(err);
+              } 
+        };
+
+         getFlowersFromTransflowerstore(); */
+              </script>
+</body>
+</html>
