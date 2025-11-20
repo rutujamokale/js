@@ -16,28 +16,21 @@
               <li>gerbera</li> 
               <li>lily</li>
        </ol>
+       <button>get flower</button>
       <script>
        
 
         $(document).ready (function(){
             console.log("document is ready");
+            $("button").click(function(){
+                console.log("button is clicked");
+                $.get("api/flowers",function(data,status){
+                    alert("data:" + JSON.stringify(data) + "\nstatus:" +status);
+                });
+            });
         });
 
-    /*  async function getFlowersFromTransflowerstore(){
-              var flowersUrl="http://localhost:3000/api/flowers";
-
-              try{
-                    let response=  await fetch(flowersUrl);
-                     let data = await response.json();   
-                   console.log(data);
-                   
-              }
-              catch(err){
-                    console.log(err);
-              } 
-        };
-
-         getFlowersFromTransflowerstore(); */
+    
               </script>
 </body>
 </html>
