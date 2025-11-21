@@ -12,10 +12,12 @@
        <hr/>
 
        <ol id="flowerlist">
-              <li>rose</li> 
+              <!-- <li>rose</li> 
               <li>gerbera</li> 
-              <li>lily</li>
+              <li>lily</li> -->
        </ol>
+
+       <p id="para"> </p>
        <button>get flower</button>
       <script>
        
@@ -24,8 +26,13 @@
             console.log("document is ready");
             $("button").click(function(){
                 console.log("button is clicked");
+                var p=document.getElementById("para");
                 $.get("api/flowers",function(data,status){
-                    alert("data:" + JSON.stringify(data) + "\nstatus:" +status);
+                    for(var i=0;i<data.length;i++){
+                        console.log(data[i].name);
+                        p.innerHTML +=data[i].name + "<br>";
+                    }
+   
                 });
             });
         });
