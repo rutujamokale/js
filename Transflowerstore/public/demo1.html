@@ -8,17 +8,25 @@
 
 </head>
 <body>
-    <button id="btnHide">Hide Me</button>
-    <p id="para">Rutu mokale</p>
+    <button id="btn1">Hide Me</button>
+    <button id="btn2">show me</button>
+    <p id="name">Rutu mokale</p>
+    <p id="company">transflower learning pvt.ltd</p>
 
     <script>
         
 
         $(document).ready(function(){
-            $(button).click(function(){
-                $(p).hide();
+            $("#btn1").click(function(){
+                $("#company").hide();
             });
         });
+        $(document).ready(function(){
+            $("#btn2").click(function(){
+                $("#name").hide();
+        });
+
+    });
         
     </script>
     
