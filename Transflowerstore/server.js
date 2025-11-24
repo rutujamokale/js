@@ -30,6 +30,13 @@ app.get("/api/customers",(request,response)=>{
     response.send(customers);
 })
 
+app.put("/api/customers/:id",(request,response)=>{
+    var customerTobeUpdated=request.body;
+    console.log("data to be updated at customers @server ");
+    console.log("customerTobeUpdated");
+    response.send("customer data updated");
+})
+
 app.post("/api/login", (req, res) => {
     const user = req.body;
 

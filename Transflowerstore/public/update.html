@@ -50,13 +50,18 @@
             $(document).ready(function(){
                 $(button).click(function(){
 
-                    var updateCustomer={
+                    var theCustomer={
                             "id":76,
                             "firstname":"rohan",
                             "lastname":"patil",
                             "email":"rohanpatil@gmail.com",
                             "contactnumber":"945676805"
                     };
+                    let url="/api/customers/"+thecustomer.id;
+                    $.put(url,thecustomer,function(){
+                        console.log("data is updated to server.");
+                    })
+
                 });
             }) ;      
     </script>
