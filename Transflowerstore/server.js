@@ -1,41 +1,86 @@
-
-var express= require('express');
-var path=require('path');
-
-var credentials=require("./data/credentials.json");
-var flowers=require("./data/flowers.json");
-var customers=require("./data/customers.json");
+var express = require('express');
+var path = require('path');
+var fs = require("fs");
 
 
-var app=express();
-app.use(express.static(path.join(__dirname,'public')));
-app.use(express.urlencoded({extended:true}));
+var credentials = require("./data/credentials.json");
+var flowers = require("./data/flowers.json");
+var customers = require("./data/customers.json");
+
+var app = express();
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get("/api/flowers",(request,response)=>{
-    response.send(flowers);
-})
+app.get("/api/customers", (req, res) => {
+    res.send(customers);
+});
 
-app.get("/api/flowers/:id",(request,response)=>{
-    let id=request.params.id;
-     let flower=flowers.find(product=>product.id==id);
-     response.send(flower);
-})
+app.get("/api/customers/:id", (req, res) => {
+    let id = req.params.id;
+    let customer = customers.find(c => c.id == id);
+    res.send(customer || {});
+});
 
-app.get("/api/customers",(request,response)=>{
-    response.send(customers);
-})
+app.post("/api/customers", (req, res) => {
+    let newCustomer = req.body;
+    customers.push(newCustomer);
 
-app.put("/api/customers/:id",(request,response)=>{
-    var customerTobeUpdated=request.body;
-    console.log("data to be updated at customers @server ");
-    console.log("customerTobeUpdated");
-    response.send("customer data updated");
-})
+    fs.writeFile("./data/customers.json", JSON.stringify(customers, null, 2), (err) => {
+        if (err) {
+            console.error("Error writing to file:", err);
+            return res.status(500).send("Failed to save customer");
+        }
+        res.send("Customer created successfully and saved to file");
+    });
+});
+app.put("/api/customers/:id", (req, res) => {
+    let id = req.params.id;
+    let index = customers.findIndex(c => c.id == id);
+
+    if (index >= 0) {
+        customers[index] = req.body;
+
+        fs.writeFile("./data/customers.json", JSON.stringify(customers, null, 2), (err) => {
+            if (err) return res.status(500).send("Failed to update customer");
+            res.send("Customer updated successfully");
+        });
+    } else {
+        res.status(404).send("Customer not found");
+    }
+});
+app.delete("/api/customers/:id", (req, res) => {
+    let id = req.params.id;
+    customers = customers.filter(c => c.id != id);
+
+    fs.writeFile("./data/customers.json", JSON.stringify(customers, null, 2), (err) => {
+        if (err) return res.status(500).send("Failed to delete customer");
+        res.send("Customer deleted successfully");
+    });
+});
+
+app.get("/api/flowers", (req, res) => {
+    res.send(flowers);
+});
+
+app.get("/api/flowers/:id", (req, res) => {
+    let id = req.params.id;
+    let flower = flowers.find(product => product.id == id);
+    res.send(flower || {});
+});
+
+app.delete("/api/flowers/:id", (req, res) => {
+    let id = req.params.id;
+    flowers = flowers.filter(f => f.id != id);
+
+    fs.writeFile("./data/flowers.json", JSON.stringify(flowers, null, 2), (err) => {
+        if (err) return res.status(500).send("Failed to delete flower");
+        res.send("Flower removed successfully");
+    });
+});
 
 app.post("/api/login", (req, res) => {
     const user = req.body;
@@ -45,27 +90,22 @@ app.post("/api/login", (req, res) => {
     );
 
     if (match) {
-        res.json({ message: " valid User" });
+        res.json({ message: "Valid User" });
     } else {
         res.json({ message: "Invalid User" });
     }
-})
-
-app.post("/api/register",(req,res)=>{
-  var newCustomer=req.body;
-  customers.push(newCustomer);
-  res.send("customer register sucessfully");
 });
-app.delete("/api/flowers/:id",(req,res)=>{
-  let id=req.params.id;
-  let remainingFlowers=flowers.filter(f=>f.id!=id);
-  flowers=remainingFlowers;
-  res.send("flowers is removed");
 
-}) ;
+app.post("/api/register", (req, res) => {
+    let newCustomer = req.body;
+    customers.push(newCustomer);
+
+    fs.writeFile("./data/customers.json", JSON.stringify(customers, null, 2), (err) => {
+        if (err) return res.status(500).send("Failed to register");
+        res.send("Customer registered successfully");
+    });
+});
 
 app.listen(3000, function () {
     console.log("Server running at http://localhost:3000");
 });
-
-
