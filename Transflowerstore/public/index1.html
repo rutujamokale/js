@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas Line Storage</title>
+  <style>
+      canvas {
+          border: 2px solid rgb(122, 30, 30);
+      }
+  </style>
+</head>
+<body>
+
+<h2>Draw Lines – Auto Save + Load From LocalStorage</h2>
+
+<canvas id="myCanvas" width="600" height="400"></canvas>
+
+<script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let drawing = false;
+    let startX = 0, startY = 0;
+
+    // Load saved lines on startup
+    window.onload = function () {
+        let storedLines = JSON.parse(localStorage.getItem("lines")) || [];
+
+        storedLines.forEach(line => {
+            drawLine(line.x1, line.y1, line.x2, line.y2);
+        });
+    };
+
+    // Draw a line
+    function drawLine(x1, y1, x2, y2) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+    }
+
+    // Store line in localStorage
+    function saveLine(x1, y1, x2, y2) {
+        let storedLines = JSON.parse(localStorage.getItem("lines")) || [];
+
+        storedLines.push({ x1, y1, x2, y2 });
+
+        localStorage.setItem("lines", JSON.stringify(storedLines));
+    }
+
+    // Mouse events
+    canvas.addEventListener("mousedown", (e) => {
+        drawing = true;
+        startX = e.offsetX;
+        startY = e.offsetY;
+    });
+
+    canvas.addEventListener("mouseup", (e) => {
+        if (drawing) {
+            let endX = e.offsetX;
+            let endY = e.offsetY;
+
+            // Draw the line immediately
+            drawLine(startX, startY, endX, endY);
+
+            // Save the line to localStorage
+            saveLine(startX, startY, endX, endY);
+
+            drawing = false;
+        }
+    });
+</script>
+
+</body>
+</html>

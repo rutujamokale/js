@@ -29,14 +29,16 @@ app.post("/api/customers", (req, res) => {
     let newCustomer = req.body;
     customers.push(newCustomer);
 
-    fs.writeFile("./data/customers.json", JSON.stringify(customers, null, 2), (err) => {
+    fs.writeFile("./data/customers.json", JSON.stringify(customers), (err) => {
         if (err) {
-            console.error("Error writing to file:", err);
+            console.error("Error writing file:", err);
             return res.status(500).send("Failed to save customer");
         }
-        res.send("Customer created successfully and saved to file");
+        console.log("Customer saved");
+        res.send("New customer is inserted to collection");
     });
 });
+
 app.put("/api/customers/:id", (req, res) => {
     let id = req.params.id;
     let index = customers.findIndex(c => c.id == id);
