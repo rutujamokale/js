@@ -3,11 +3,12 @@ var dbServer={
     host:'localhost',
     user:'root',
     password:'password',
-
     database:'assessmentdb'
 }
-var connection=mysql.createConnection();
+var connection=mysql.createConnection(dbServer);
+
 connection.connect(function(err){
+    console.log("123456789")
     console.log(err);
 });
 
