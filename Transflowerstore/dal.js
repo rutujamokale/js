@@ -12,19 +12,46 @@ connection.connect(function(err){
     console.log(err);
 });
 
-    var selectAllQuery="select * from roles";
-    var selectByIdQuery="select * from roles where id=1";
-    var deleteQuery="delete from roles where id=20";
-    var updateQuery = "UPDATE roles SET name = 'student' WHERE id = 19";
-
-
-    connection.query(selectAllQuery,function(err, data){
+     var getById=function(){
+           var selectByIdQuery="select * from roles where id=1";
+        connection.query(selectAllQuery,function(err, data){
         if(err){
             console.log("error: "+err);
         }
         else{
             console.log(data);
         }
+         
     });
+
+    }
+
+     var remove=function(){
+            var removeQuery="delete from roles where id=20";
+
+            connection.query( removeQuery,function(err, data){
+        if(err){
+            console.log("error: "+err);
+        }
+        else{
+            console.log(data);
+        }
+         
+    });
+    }
+
+     var update=function(){
+            var updateQuery = "UPDATE roles SET name = 'student' WHERE id = 19";
+
+            connection.query(updateQuery,function(err, data){
+        if(err){
+            console.log("error: "+err);
+        }
+        else{
+            console.log(data);
+        }
+         
+    });
+    }
    
     
