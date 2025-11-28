@@ -12,10 +12,13 @@ connection.connect(function(err){
     console.log(err);
 });
 
-    var selectQuery="select * from roles";
+    var selectAllQuery="select * from roles";
+    var selectByIdQuery="select * from roles where id=1";
+    var deleteQuery="delete from roles where id=20";
+    var updateQuery = "UPDATE roles SET name = 'student' WHERE id = 19";
 
 
-    connection.query(selectQuery,function(err, data){
+    connection.query(selectAllQuery,function(err, data){
         if(err){
             console.log("error: "+err);
         }
@@ -23,5 +26,5 @@ connection.connect(function(err){
             console.log(data);
         }
     });
-    console.log("such a simple way to access data from tables");
+   
     
