@@ -46,10 +46,10 @@ connection.connect(function(err){
 
 
 
-     var update=function(){
-            var updateQuery = "UPDATE roles SET name = 'student' WHERE id = 19";
+     var updateById=function(id){
+            var updateQuery = "UPDATE roles SET name = 'student' WHERE id = ?";
 
-            connection.query(updateQuery,function(err, data){
+            connection.query(updateQuery,[id],function(err, data){
         if(err){
             console.log("error: "+err);
         }
@@ -59,8 +59,9 @@ connection.connect(function(err){
          
     });
     };
-   // getById(3);
+   getById(3);
 
     removeById(12);
+    updateById(13);
    
     
