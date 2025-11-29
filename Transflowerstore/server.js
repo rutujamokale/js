@@ -1,6 +1,13 @@
 var express = require('express');
 var path = require('path');
 var fs = require("fs");
+var dbServer={
+    host:'localhost',
+    user:'root',
+    password:'password',
+    database:'assessmentdb'
+};
+
 
 
 var credentials = require("./data/credentials.json");
@@ -8,6 +15,13 @@ var flowers = require("./data/flowers.json");
 var customers = require("./data/customers.json");
 
 var app = express();
+
+var connection=mysql.createConnection(dbServer);
+
+connection.connect(function(err){
+    console.log("123456789")
+    console.log(err);
+});
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -15,9 +29,26 @@ app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.get("/api/roles",
+        (req,res)=>{
+                var selectAllQuery="select *from roles";
+                 connection.query(selectAllQuery,function(err,data){
+                if(err){
+                    console.log("error:" + err);
+                }
+                else{
+                    console.log("return all data",data);
+                }
+            });
+            res.send(data);
+
+        });
+
 app.get("/api/customers", (req, res) => {
     res.send(customers);
 });
+
+
 
 app.get("/api/customers/:id", (req, res) => {
     let id = req.params.id;

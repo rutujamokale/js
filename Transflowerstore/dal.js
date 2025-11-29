@@ -26,6 +26,19 @@ connection.connect(function(err){
 
     };
 
+        var selectAll=function(){
+            var selectAllQuery="select * from roles ";
+            connection.query(selectAllQuery,function(err,data){
+                if(err){
+                    console.log("error:" + err);
+                }
+                else{
+                    console.log("return all data",data);
+                }
+            });
+        };
+
+
     var removeById = function (id) {
     if (!id) {
         console.log("Error: id is required");
@@ -42,9 +55,7 @@ connection.connect(function(err){
         }
     });
 };
-
-
-
+    
 
      var updateById=function(id){
             var updateQuery = "UPDATE roles SET name = 'student' WHERE id = ?";
@@ -59,9 +70,10 @@ connection.connect(function(err){
          
     });
     };
-   getById(3);
+//    getById(3);
 
-    removeById(12);
-    updateById(13);
+//     removeById(12);
+//     updateById(13);
+        selectAll();
    
     
