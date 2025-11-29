@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var fs = require("fs");
+var mysql = require('mysql'); 
 var dbServer={
     host:'localhost',
     user:'root',
@@ -37,10 +38,10 @@ app.get("/api/roles",
                     console.log("error:" + err);
                 }
                 else{
-                    console.log("return all data",data);
+                    res.send(data);
                 }
             });
-            res.send(data);
+           // res.send(data);
 
         });
 

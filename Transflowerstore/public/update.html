@@ -37,6 +37,7 @@
         <td>
             <button id="createBtn">Create</button>
             <button id="updateBtn">Update</button>
+            <button id="rolesbtn"> roles</button>
             <button id="deleteBtn">Delete</button>
             <button id="getBtn">Get</button>
         </td>
@@ -67,8 +68,21 @@ $(document).ready(function () {
             success: function (result) {
                 console.log("Customer created:", result);
             }
+        });a
+    });
+
+     $("#rolesbtn").click(function () {
+       
+        $.ajax({
+            url: "/api/roles",
+            type: "GET",
+            success:function(result){
+                console.log(result);    
+                console.log("all roles received from server,ultimatelyfrom database server  ");
+            }
         });
     });
+
 
 
     $("#updateBtn").click(function () {
@@ -98,6 +112,8 @@ $(document).ready(function () {
             }
         });
     });
+
+
 
 
     $("#getBtn").click(function () {
