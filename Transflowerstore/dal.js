@@ -1,16 +1,4 @@
-var mysql=require('mysql');
-var dbServer={
-    host:'localhost',
-    user:'root',
-    password:'password',
-    database:'assessmentdb'
-}
-var connection=mysql.createConnection(dbServer);
 
-connection.connect(function(err){
-    console.log("123456789")
-    console.log(err);
-});
 
      var getById=function(id){
            var selectByIdQuery="select * from roles where id=?";

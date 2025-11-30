@@ -1,15 +1,8 @@
 var express = require('express');
 var path = require('path');
 var fs = require("fs");
-var mysql = require('mysql'); 
-var dbServer={
-    host:'localhost',
-    user:'root',
-    password:'password',
-    database:'assessmentdb'
-};
 
-
+var sql=require('./mysqlconnect');
 
 var credentials = require("./data/credentials.json");
 var flowers = require("./data/flowers.json");
@@ -33,7 +26,7 @@ app.get("/", function (req, res) {
 app.get("/api/roles",
         (req,res)=>{
                 var selectAllQuery="select *from roles";
-                 connection.query(selectAllQuery,function(err,data){
+                 sql.query(selectAllQuery,function(err,data){
                 if(err){
                     console.log("error:" + err);
                 }
@@ -44,6 +37,27 @@ app.get("/api/roles",
            // res.send(data);
 
         });
+
+
+app.post("/api/roles",
+            (req,res)=>{
+                var newrole=req.body;
+                var insertQuery="insert into roles (id,name,lob) values(?,?,?)";
+
+                sql.query(insertQuery,[newrole.id,newrole.name,newrole.lob],function(err,data){
+                    if(err){
+                        console.log("error:" +err);
+                    }
+                    else
+                    {
+                        response.send(data);
+                    }
+                });
+
+
+            });
+
+
 
 app.get("/api/customers", (req, res) => {
     res.send(customers);
