@@ -7,15 +7,11 @@ var sql=require('./mysqlconnect');
 var credentials = require("./data/credentials.json");
 var flowers = require("./data/flowers.json");
 var customers = require("./data/customers.json");
+var roles=require("./data/roles.json");
 
 var app = express();
 
-var connection=mysql.createConnection(dbServer);
 
-connection.connect(function(err){
-    console.log("123456789")
-    console.log(err);
-});
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -39,23 +35,31 @@ app.get("/api/roles",
         });
 
 
-app.post("/api/roles",
-            (req,res)=>{
-                var newrole=req.body;
-                var insertQuery="insert into roles (id,name,lob) values(?,?,?)";
+app.post("/api/roles", (req, res) => {
 
-                sql.query(insertQuery,[newrole.id,newrole.name,newrole.lob],function(err,data){
-                    if(err){
-                        console.log("error:" +err);
-                    }
-                    else
-                    {
-                        response.send(data);
-                    }
-                });
+    var newrole = req.body;
+    console.log(newrole); 
 
+    var insertQuery = "INSERT INTO roles (id, name, lob) VALUES (?, ?, ?)";
 
+    connection.query(insertQuery, 
+        [newrole.id, newrole.name, newrole.lob], 
+        function(err, data) {
+
+            if (err) {
+                console.log("error:", err);
+                return res.status(500).send(err);
+            }
+
+            res.send({
+                message: "Role inserted successfully",
+                result: data
             });
+        }
+    );
+
+});
+
 
 
 

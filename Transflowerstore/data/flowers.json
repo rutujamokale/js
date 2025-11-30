@@ -1,14 +1,13 @@
 [
-  {
+ {
     "id": 1,
     "name": "Rose",
     "description": "Classic red rose, long-stemmed, fragrant — perfect for romantic bouquets.",
     "unitPrice": 49.99,
-    "quantity": 120,
+    "quantity": 120, 
     "likes": 50000
   },
-  {
-    "id": 2,
+  {    "id": 2,
     "name": "Tulip",
     "description": "Bright spring tulips in mixed colors; crisp petals and a cheerful look.",
     "unitPrice": 29.5,
@@ -24,7 +23,7 @@
     "likes": 20000
   },
   {
-    "id": 4,
+    "id": 4,   
     "name": "Sunflower",
     "description": "Large, sunny sunflowers with bold yellow petals — brightens any room.",
     "unitPrice": 19.75,

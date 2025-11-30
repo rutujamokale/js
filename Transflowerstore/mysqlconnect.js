@@ -7,7 +7,10 @@ var dbServer={
     database:'assessmentdb'
 };
 
+var connection = mysql.createConnection(dbServer);
+
 connection.connect(function(err){
+    
    if(err)throw err;
 });
 
