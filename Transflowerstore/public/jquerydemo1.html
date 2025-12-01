@@ -10,6 +10,8 @@
     <h1> transflower learning pvt.ltd</h1>
     <p> Doing ordinary things extra ordinary</p>
     <p>mentor as a service</p>
+
+    <p id="para">hello</p>
     <ol>
         <li>corporate traning</li>
         <li>online dev camps</li>
@@ -24,9 +26,12 @@
             $("#btnapply").click(function(){
                 console.log("button is clicked ..")
 
+                $("#para").text("apply is clicked");
+
             });
 
             $("#btnreset").click(function(){
+                $("#para").text("reset is clicked...");
                 console.log("button is reset");
             });
         });
