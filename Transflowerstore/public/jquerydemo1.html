@@ -17,9 +17,30 @@
         <li>online dev camps</li>
         <li>finishing scholl mentoring</li>
     </ol>
+
     <button id="btnapply">apply</button>
     <button id="btnreset">reset</button>
 
+
+    <table>
+        <tr>
+            <td> username</td>
+            <td><input type="text " value="rutu" id="txtUserName" name="username"></td>
+        </tr>
+
+        <tr>
+            <td> password</td>
+            <td><input type="password " value="rutaa" id="txtPassword" name="password"></td>
+        </tr>
+
+        <tr>
+            <td> </td>
+            <td><button id="btnlogin">login</button></td>
+        </tr>
+        
+        
+
+    </table>
     <script>
         $(document).ready(function(){
             console.log("document is ready");
@@ -27,13 +48,27 @@
                 console.log("button is clicked ..")
 
                 $("#para").text("apply is clicked");
+              $("#para").show();
 
             });
 
             $("#btnreset").click(function(){
-                $("#para").text("reset is clicked...");
-                console.log("button is reset");
+                /*$("#para").text("reset is clicked...");*/
+                $("#para").hide(1000);
+                console.log("button is reset"); 
             });
+
+            $("#btnlogin").click(function(){
+                var username=$("#txtUserName").val();
+                 var password=$("#txtPassword").val();
+
+                 var credential={
+                    "username":username,
+                    "password":password
+                 };
+                 console.log(credential);
+            
+            })
         });
 
     </script>
