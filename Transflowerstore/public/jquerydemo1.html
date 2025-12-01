@@ -15,10 +15,22 @@
         <li>online dev camps</li>
         <li>finishing scholl mentoring</li>
     </ol>
-    <button>apply</button>
+    <button id="btnapply">apply</button>
+    <button id="btnreset">reset</button>
 
     <script>
-        
+        $(document).ready(function(){
+            console.log("document is ready");
+            $("#btnapply").click(function(){
+                console.log("button is clicked ..")
+
+            });
+
+            $("#btnreset").click(function(){
+                console.log("button is reset");
+            });
+        });
+
     </script>
 </body>
 </html>
