@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Different types of input elements demo</title>
+       <script src="scripts/jquery.min.js"></script>
+</head>
+<body>
+    <form action="/api/register" method="POST">
+        <input type="text" value ="transflower"/>
+    <br/>
+    <input type="date"/>
+    <br/>
+    passed:<input type="checkbox" value="passed"/>
+        <p> please select your qualification:</p>
+        <input type="radio" id="bca" name="qualification"value="HTML">
+        <label for="bca">BCA</label>
+
+          <input type="radio" id="be" name="qualification"value="CSS">
+        <label for="be">BE</label>
+
+          <input type="radio" id="bcs" name="qualification"value="JavaScript">
+        <label for="bcs">BCS</label> <br/>
+
+        <button type="submit"> register</button>
+    </form>
+   
+</body>
+</html>
