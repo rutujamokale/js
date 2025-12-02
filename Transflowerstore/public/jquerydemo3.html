@@ -6,21 +6,21 @@
     <title>Different types of input elements demo</title>
        <script src="scripts/jquery.min.js"></script>
 </head>
-<body>
+<body style="background-color:blue">
     <form action="/api/register" method="POST">
-        <input type="text" value ="transflower"/>
+        <input type="text" value ="rutuja mokale" name="name"/>
     <br/>
-    <input type="date"/>
+    <input type="date" name="resultdate"/>
     <br/>
-    passed:<input type="checkbox" value="passed"/>
+    passed:<input type="checkbox" value="passed" name="result"/>
         <p> please select your qualification:</p>
-        <input type="radio" id="bca" name="qualification"value="HTML">
+        <input type="radio" id="bca" name="qualification"value="BCA">
         <label for="bca">BCA</label>
 
-          <input type="radio" id="be" name="qualification"value="CSS">
+          <input type="radio" id="be" name="qualification"value="BE">
         <label for="be">BE</label>
 
-          <input type="radio" id="bcs" name="qualification"value="JavaScript">
+          <input type="radio" id="bcs" name="qualification"value="BCS">
         <label for="bcs">BCS</label> <br/>
 
         <button type="submit"> register</button>
