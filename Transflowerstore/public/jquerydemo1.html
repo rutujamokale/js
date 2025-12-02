@@ -123,8 +123,9 @@
                             console.log(flower);
                             $("#pTitle").text(flower.name);
                             $("#pDescription").text(flower.description);
-                            $("#pUnitPrice").text(flower.unitprice);
+                            $("#pUnitPrice").text(flower.unitPrice);
                             $("#pQuantity").text(flower.quantity);
+                            $("#imgFlower").attr("src",flower.image)
                         },
                         error:function(err){
                             console.log(err);

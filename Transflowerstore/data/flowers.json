@@ -12,7 +12,10 @@
     "description": "Bright spring tulips in mixed colors; crisp petals and a cheerful look.",
     "unitPrice": 29.5,
     "quantity": 200,
-    "likes": 10000
+    "likes": 10000,
+     "image": "./images/tulip-delight.jpg"
+
+    
   },
   {
     "id": 3,
