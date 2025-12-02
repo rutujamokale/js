@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery demo</title>
+</head>
+<body>
+    <h1>Dropdown list Box</h1>
+    <p>simple demo</p>
+
+    <ol>
+        <li>handson1</li>
+        <li>handson2</li>
+    </ol>  
+    
+    
+    <table>
+        <td>state</td>
+
+        <td><select>
+            <option value="1">Maharastra</option>
+            <option value="2">Goa</option>
+            <option value="3">karnataka</option>
+            <option value="4">M.P</option>
+
+    </select>
+
+        </td>
+        <tr>
+            <td></td>
+            <td> <button id="btnselect"> Get Cities</button></td>
+        </tr>
+    </table>
+    <script>
+            $(document).ready (function(){
+                $("#btnselect").click(()=>{
+                        var selectedState=$("#mySelection option:selected").text();
+                        alert(selectedState);
+                });
+            });
+    </script>
+</body>
+</html>
