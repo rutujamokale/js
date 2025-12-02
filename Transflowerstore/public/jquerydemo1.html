@@ -39,6 +39,9 @@
         </tr>
 
         <table>
+
+    <input type="number"  value="2" id="txtId"/>    
+    <br/>    
     <button id="btnfetchFlower"> fetch flower</button>
 
     <h2>todays requested fresh flowers</h2>
@@ -66,7 +69,7 @@
 
         <tr>
             <td> Unit price</td>
-             <td><p id="p"></p></td>
+             <td><p id="pUnitPrice"></p></td>
         </tr>
         
     </table>
@@ -114,10 +117,10 @@
             });
 
             $("#btnfetchFlower").click(function(){
-
+                var id=$("#txtId").val();
                 console.log("fetching flower from external api");
                     $.ajax({
-                        url:"/api/flowers/2",
+                        url:"/api/flowers/" +id,
                         type:'GET',
                         success:function(flower){
                             console.log(flower);
