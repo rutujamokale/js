@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter Users by Role</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+
+     html, body {
+    height: 100%;
+ 
+   
+}
+
+body { 
+    font-family: Arial;
+    background: #f2f2f2;
+}
+
+
+.panel {
+    background: white;
+    width: 90%;        /* wider box looks better */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    margin: 5% auto;     /* center horizontally */
+}
+
+        li { 
+           background: #f8f8f8;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 6px;
+        } 
+#rolesBox {
+    display: flex;
+    flex-wrap: wrap;     /* goes to next line automatically */
+    justify-content: space-evenly;
+    gap: 50px ;            /* space between checkboxes */
+    padding: 10px;        /* inner spacing */
+}
+
+#rolesBox label {
+    display: flex;
+    align-items: center;
+    gap: 5px;             /* space between checkbox & text */
+    padding: 5px 10px;    /* padding around each box */
+    background: #f5f5f5;
+    border-radius: 6px;
+}
+
+
+
+
+   
+    </style>
+</head>
+<body >
+<div class="panel">
+<h2>Select Role</h2>
+
+<!-- WHERE CHECKBOXES WILL BE ADDED -->
+<div id="rolesBox"></div>
+
+<h3>Users:</h3>
+<ul id="output"></ul>
+</div>
+<script>
+$(document).ready(function () {
+
+    // 1. Load roles dynamically
+    $.ajax({
+        url: "http://localhost:5238/api/role/roles",
+        type: "GET",
+        success: function (roles) {
+            let html = "";
+            roles.forEach(role => {
+                html += `
+                    <label>
+                        <input type="checkbox" class="roleChecked" data-id="${role.id}">
+                        ${role.name}
+                    </label><br>
+                `;
+            });
+            $("#rolesBox").html(html);
+        }
+    });
+
+    // 2. Fetch users based on selected roles
+    $(document).on("change", ".roleChecked", function () {
+
+        let selectedRoleIds = [];
+
+        $(".roleChecked:checked").each(function () {
+            selectedRoleIds.push($(this).data("id"));
+        });
+
+        if (selectedRoleIds.length === 0) {
+            $("#output").html("");
+            return;
+        }
+
+        $("#output").html("<li>Loading...</li>");
+
+        $.ajax({
+            url: "http://localhost:5238/api/role/users",
+            type: "GET",
+            traditional: true,
+            data: { roleIds: selectedRoleIds },
+
+            success: function (users) {
+                let html = "";
+
+                users.forEach(u => {
+                    html += `<li>${u.firstname} ${u.lastname}</li>`;
+                });
+
+                $("#output").html(html);
+            },
+
+            error: function (xhr) {
+            $("#output").html(`<li>${xhr.responseText}</li>`);
+}
+        });
+
+    });
+});
+</script>
+
+</body>
+</html>
