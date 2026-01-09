@@ -26,5 +26,27 @@ console.log(herolevel>enemylevel);
 console.log(herolevel<enemylevel);
 console.log(herolevel==enemylevel);
 
+function castSpell(spellname){
+    console.log("casting" +spellname); 
+}
+let cast=(spellname)=>{
+    console.log("casting" +spellname);
+}
 
+castSpell("fireball");
+cast("icebolt");
+
+let health=100;
+if(health>0){
+    console.log("the hero is alive");
+   
+} else{
+    console.log("the hero is dead");
+}
+
+
+
+for(let round=1;round<=5;round++){
+    console.log("round" + round);
+}
 
