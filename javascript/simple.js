@@ -50,3 +50,16 @@ for(let round=1;round<=5;round++){
     console.log("round" + round);
 }
 
+mana=100;
+while(mana>0){
+    console.log("casting spell,mana left:" + mana);
+    mana-=20;
+}
+
+let weapon={name:"sword",damage:50,type:"melee"};
+let inventory=["potion","shield","armor"];
+
+    for(let item of inventory){
+        console.log(item);
+    }
+
