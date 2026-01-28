@@ -1,4 +1,5 @@
-class salesemployee extends employee{
+var Employee = require('./employee');
+class SalesEmployee extends Employee{
 
     constructor(id, name, basicsalary, hra, tax, commision) {
         super(id, name, basicsalary, hra, tax)
@@ -6,12 +7,21 @@ class salesemployee extends employee{
     }
 
     computepay() {
-        return super.computepay + this.commision;
+        return super.computepay() + this.commision;
     }
 
-    dowork() {
+    dowork() { 
         console.log("salesemployee is working ");
+    }
+
+    ConductTraning() {
+        console.log("salesemployee conduct traning");
+
+    }
+
+    ConductHandOnSession() {
+        console.log("salesemployee conduct handsonsession");
     }
 }
 
-Module.exports = salesemployee;
+module.exports = SalesEmployee;

@@ -8,11 +8,11 @@ class Employee {
     }
 
     computepay() {
-        return this.basicsalary + hra - this.tax;
+        return this.basicsalary + this.hra - this.tax;
     }
 
     dowork() {
         throw new error('method "dowork()" must be implemented ')
     }
 }
-Module.exports =Employee ;
+module.exports = Employee;

@@ -8,4 +8,4 @@ class ITrainer{
     }
 }
 
-Module.exports = ITrainer;
+module.exports = ITrainer;
