@@ -1,4 +1,4 @@
-class Employee{
+class Employee {
     constructor(id, name, basicsalary, hra, tax) {
         this.id = id;
         this.name = name;
@@ -15,3 +15,4 @@ class Employee{
         throw new error('method "dowork()" must be implemented ')
     }
 }
+Module.exports =Employee ;
